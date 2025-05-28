@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtBusUsuario = new System.Windows.Forms.TextBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
@@ -37,9 +37,9 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.txtConUsuario = new System.Windows.Forms.TextBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
             this.lblContUsuario = new System.Windows.Forms.Label();
-            this.txtNomUsuario = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNomUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.mrcUsuarios.SuspendLayout();
@@ -55,14 +55,14 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtBusUsuario
+            // txtBuscar
             // 
-            this.txtBusUsuario.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusUsuario.Location = new System.Drawing.Point(13, 12);
-            this.txtBusUsuario.Multiline = true;
-            this.txtBusUsuario.Name = "txtBusUsuario";
-            this.txtBusUsuario.Size = new System.Drawing.Size(216, 32);
-            this.txtBusUsuario.TabIndex = 14;
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(13, 12);
+            this.txtBuscar.Multiline = true;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(216, 32);
+            this.txtBuscar.TabIndex = 14;
             // 
             // btnCancelar
             // 
@@ -106,9 +106,9 @@
             this.mrcUsuarios.Controls.Add(this.btnEliminar);
             this.mrcUsuarios.Controls.Add(this.btnModificar);
             this.mrcUsuarios.Controls.Add(this.btnNuevo);
-            this.mrcUsuarios.Controls.Add(this.txtConUsuario);
+            this.mrcUsuarios.Controls.Add(this.txtContraseña);
             this.mrcUsuarios.Controls.Add(this.lblContUsuario);
-            this.mrcUsuarios.Controls.Add(this.txtNomUsuario);
+            this.mrcUsuarios.Controls.Add(this.txtNombre);
             this.mrcUsuarios.Controls.Add(this.lblNomUsuario);
             this.mrcUsuarios.Location = new System.Drawing.Point(13, 51);
             this.mrcUsuarios.Margin = new System.Windows.Forms.Padding(4);
@@ -153,13 +153,13 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // txtConUsuario
+            // txtContraseña
             // 
-            this.txtConUsuario.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConUsuario.Location = new System.Drawing.Point(23, 118);
-            this.txtConUsuario.Name = "txtConUsuario";
-            this.txtConUsuario.Size = new System.Drawing.Size(216, 29);
-            this.txtConUsuario.TabIndex = 5;
+            this.txtContraseña.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraseña.Location = new System.Drawing.Point(23, 118);
+            this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.Size = new System.Drawing.Size(216, 29);
+            this.txtContraseña.TabIndex = 5;
             // 
             // lblContUsuario
             // 
@@ -172,13 +172,13 @@
             this.lblContUsuario.TabIndex = 4;
             this.lblContUsuario.Text = "Contraseña";
             // 
-            // txtNomUsuario
+            // txtNombre
             // 
-            this.txtNomUsuario.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomUsuario.Location = new System.Drawing.Point(23, 49);
-            this.txtNomUsuario.Name = "txtNomUsuario";
-            this.txtNomUsuario.Size = new System.Drawing.Size(216, 29);
-            this.txtNomUsuario.TabIndex = 3;
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(23, 49);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(216, 29);
+            this.txtNombre.TabIndex = 3;
             // 
             // lblNomUsuario
             // 
@@ -197,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 373);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txtBusUsuario);
+            this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvUsuarios);
@@ -216,7 +216,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtBusUsuario;
+        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dgvUsuarios;
@@ -224,9 +224,9 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.TextBox txtConUsuario;
+        private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Label lblContUsuario;
-        private System.Windows.Forms.TextBox txtNomUsuario;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNomUsuario;
     }
 }

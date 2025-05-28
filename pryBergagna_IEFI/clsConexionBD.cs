@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace pryBergagna_IEFI
 {
-    internal class clsConexionBD
+    public class clsConexionBD
     {
-        //Cadena de Conexion
-        //
 
-        //Verificar Conexión
-        public void ConectarBD()
+        // Cadena de conexión 
+        private string cadena = @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
+
+        public bool ConectarBD()
         {
             try
             {
@@ -23,16 +23,16 @@ namespace pryBergagna_IEFI
                 {
                     conexion.Open();
                 }
+                return true;
             }
             catch (Exception error)
             {
                 MessageBox.Show("Error en la conexión a la base de datos: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-
-
-        //Listar BD
+        // Listar Usuarios en un DataGridView
         public void ListarBD(DataGridView Grilla)
         {
             try
@@ -40,26 +40,25 @@ namespace pryBergagna_IEFI
                 using (SqlConnection conexion = new SqlConnection(cadena))
                 {
                     conexion.Open();
-                    string query = "SELECT u.Id, u.Nombre, u.Contraseña, r.Nombre AS Rol FROM Usuarios u INNER JOIN Roles r ON u.RolId = r.Id;";
-
+                    string query = @"SELECT u.Id, u.Nombre, u.Contraseña, r.Nombre AS Rol 
+                                     FROM Usuarios u 
+                                     INNER JOIN Roles r ON u.RolId = r.Id;";
                     SqlCommand comando = new SqlCommand(query, conexion);
                     SqlDataAdapter adaptador = new SqlDataAdapter(comando);
 
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
+
                     Grilla.DataSource = tabla;
                 }
-
             }
             catch (Exception error)
             {
-                MessageBox.Show($"No se pudieron cargar los Usuarios correctamente. Revise su conexión o intente más tarde. Detalles del error: {error.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pudieron cargar los Usuarios correctamente. Detalles: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-
-        //Agregar
+        // Agregar usuario nuevo
         public void Agregar(clsUsuario usuario)
         {
             try
@@ -68,18 +67,14 @@ namespace pryBergagna_IEFI
                 {
                     conexion.Open();
                     string query = "INSERT INTO Usuarios (Nombre, Contraseña, RolId) VALUES (@nombre, @contraseña, @rolId)";
-
                     SqlCommand comando = new SqlCommand(query, conexion);
-
                     comando.Parameters.AddWithValue("@nombre", usuario.Nombre);
                     comando.Parameters.AddWithValue("@contraseña", usuario.Contraseña);
-                    comando.Parameters.AddWithValue("@rolId", 2);  //Siempre será 'usuario'//
+                    comando.Parameters.AddWithValue("@rolId", usuario.RolId); // Usa el rol del objeto
 
                     comando.ExecuteNonQuery();
-
                     MessageBox.Show("Usuario agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception error)
             {
@@ -87,9 +82,7 @@ namespace pryBergagna_IEFI
             }
         }
 
-
-
-        //Modificar
+        // Modificar usuario existente
         public void Modificar(clsUsuario usuario)
         {
             try
@@ -97,18 +90,14 @@ namespace pryBergagna_IEFI
                 using (SqlConnection conexion = new SqlConnection(cadena))
                 {
                     conexion.Open();
-                    string query = "UPDATE Usuarios SET Nombre = @nombre, Contraseña = @contraseña  WHERE Id = @id";
-
+                    string query = "UPDATE Usuarios SET Nombre = @nombre, Contraseña = @contraseña WHERE Id = @id";
                     SqlCommand comando = new SqlCommand(query, conexion);
-
                     comando.Parameters.AddWithValue("@nombre", usuario.Nombre);
                     comando.Parameters.AddWithValue("@contraseña", usuario.Contraseña);
                     comando.Parameters.AddWithValue("@id", usuario.Id);
 
                     comando.ExecuteNonQuery();
-
                     MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
             }
             catch (Exception error)
@@ -117,9 +106,7 @@ namespace pryBergagna_IEFI
             }
         }
 
-
-
-        //Eliminar
+        // Eliminar usuario por Id
         public void Eliminar(int id)
         {
             try
@@ -128,15 +115,12 @@ namespace pryBergagna_IEFI
                 {
                     conexion.Open();
                     string query = "DELETE FROM Usuarios WHERE Id = @id";
-
                     SqlCommand comando = new SqlCommand(query, conexion);
                     comando.Parameters.AddWithValue("@id", id);
 
                     comando.ExecuteNonQuery();
                     MessageBox.Show("Usuario eliminado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
-
             }
             catch (Exception error)
             {
@@ -144,9 +128,7 @@ namespace pryBergagna_IEFI
             }
         }
 
-
-
-        //Buscar por nombre
+        // Buscar usuarios por nombre
         public void BuscarporNombre(DataGridView Grilla, string nombreUsuario)
         {
             try
@@ -157,7 +139,6 @@ namespace pryBergagna_IEFI
                     string query = "SELECT * FROM Usuarios WHERE Nombre LIKE @nombre";
                     SqlCommand comando = new SqlCommand(query, conexion);
                     comando.Parameters.AddWithValue("@nombre", "%" + nombreUsuario + "%");
-
 
                     SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                     DataTable tabla = new DataTable();
@@ -179,77 +160,8 @@ namespace pryBergagna_IEFI
             }
         }
 
-
-
-
-        //-----------------------------------------------------------------------------------------------------------------
-
-        //Guardar Sesión
-        public void GuardarSesion(string nombreUsuario, DateTime horaInicio, DateTime horaFin, TimeSpan tiempototal)
-        {
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(cadena))
-                {
-                    conexion.Open();
-                    string query = @"INSERT INTO Sesiones (IdUsuario, FechaInicio, HoraInicio, HoraFin, TotalHoras)
-                         VALUES (
-                             (SELECT Id FROM Usuarios WHERE Nombre = @NombreUsuario),
-                             @FechaInicio, @HoraInicio, @HoraFin, @TotalHoras)";
-
-
-                    SqlCommand comando = new SqlCommand(query, conexion);
-                    comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                    comando.Parameters.AddWithValue("@FechaInicio", horaInicio.Date);
-                    comando.Parameters.AddWithValue("@HoraInicio", horaInicio);
-                    comando.Parameters.AddWithValue("@HoraFin", horaFin);
-                    comando.Parameters.AddWithValue("@TotalHoras", tiempototal);
-
-                    comando.ExecuteNonQuery();
-                }
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("Error al guardar Sesión: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        //Listar Sesiones
-        public void ListarSesiones(DataGridView Grilla)
-        {
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(cadena))
-                {
-                    conexion.Open();
-
-                    string query = "SELECT u.Id, u.Nombre, s.FechaInicio, s.HoraInicio, s.HoraFin, s.TotalHoras AS TiempoTranscurrido FROM Sesiones s INNER JOIN Usuarios u ON s.IdUsuario = u.Id ORDER BY s.FechaInicio DESC, s.HoraInicio DESC;";
-
-
-                    SqlCommand comando = new SqlCommand(query, conexion);
-                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-
-                    DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-
-                    Grilla.DataSource = tabla;
-                }
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show($"No se pudieron cargar las sesiones correctamente. Revise su conexión o intente más tarde. Detalles del error: {error.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
-
-        //-----------------------------------------------------------------------------------------
-
-        //Verificar Usuario
-        public bool verificarUsuario(clsUsuario usuario)
+        // Verificar usuario (login)
+        public bool VerificarUsuario(clsUsuario usuario)
         {
             bool loginExitoso = false;
 
@@ -260,16 +172,15 @@ namespace pryBergagna_IEFI
                     conexion.Open();
                     string query = "SELECT RolId FROM Usuarios WHERE Nombre = @Nombre AND Contraseña = @Contraseña";
 
-
                     SqlCommand comando = new SqlCommand(query, conexion);
                     comando.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                     comando.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
 
-                    object match = comando.ExecuteScalar();
+                    object rol = comando.ExecuteScalar();
 
-                    if (match != null)
+                    if (rol != null)
                     {
-                        usuario.RolId = Convert.ToInt32(match);
+                        usuario.RolId = Convert.ToInt32(rol);
                         loginExitoso = true;
                     }
                     else
@@ -284,6 +195,61 @@ namespace pryBergagna_IEFI
             }
 
             return loginExitoso;
+        }
+
+        // Guardar sesión (ejemplo básico)
+        public void GuardarSesion(string nombreUsuario, DateTime horaInicio, DateTime horaFin, TimeSpan tiempoTotal)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadena))
+                {
+                    conexion.Open();
+                    string query = @"INSERT INTO Sesiones (IdUsuario, FechaInicio, HoraInicio, HoraFin, TotalHoras)
+                                     VALUES (
+                                        (SELECT Id FROM Usuarios WHERE Nombre = @NombreUsuario),
+                                        @FechaInicio, @HoraInicio, @HoraFin, @TotalHoras)";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+                    comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                    comando.Parameters.AddWithValue("@FechaInicio", horaInicio.Date);
+                    comando.Parameters.AddWithValue("@HoraInicio", horaInicio);
+                    comando.Parameters.AddWithValue("@HoraFin", horaFin);
+                    comando.Parameters.AddWithValue("@TotalHoras", tiempoTotal);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error al guardar Sesión: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Listar sesiones en un DataGridView
+        public void ListarSesiones(DataGridView Grilla)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadena))
+                {
+                    conexion.Open();
+                    string query = @"SELECT u.Id, u.Nombre, s.FechaInicio, s.HoraInicio, s.HoraFin, s.TotalHoras AS TiempoTranscurrido 
+                                     FROM Sesiones s 
+                                     INNER JOIN Usuarios u ON s.IdUsuario = u.Id 
+                                     ORDER BY s.FechaInicio DESC, s.HoraInicio DESC;";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    Grilla.DataSource = tabla;
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("No se pudieron cargar las sesiones correctamente. Detalles: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

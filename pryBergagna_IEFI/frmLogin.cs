@@ -27,40 +27,31 @@ namespace pryBergagna_IEFI
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-           
+            if (!conexion.ConectarBD())
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text))
+            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtContraseña.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUsuario.Focus();
+                MessageBox.Show("Complete todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            clsUsuario usuario = new clsUsuario(0, txtUsuario.Text, txtContraseña.Text, 0);
+
+            if (conexion.VerificarUsuario(usuario))
             {
-                clsUsuario usuario = new clsUsuario(0, txtUsuario.Text, txtContraseña.Text, 0);
+                DateTime horaInicio = DateTime.Now;
 
-                bool resultado = conexion.verificarUsuario(usuario);
-
-                if (resultado)
-                {
-                    frmInicio ventana = new frmInicio(usuario.Nombre, usuario.RolId);
-                    this.Hide();
-                    ventana.ShowDialog();
-
-                }
-                else
-                {
-                    intentos = intentos - 1;
-                    MessageBox.Show("Datos incorrectos. Intentos restantes: " + intentos);
-
-                    if (intentos == 0)
-                    {
-                        MessageBox.Show("Has alcanzado el límite de intentos. Contacta con el administrador.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        btnIngresar.Enabled = false;
-                    }
-                }
+                // Abrir formulario principal
+                frmInicio principal = new frmInicio(usuario, horaInicio);
+                principal.Show();
+                this.Hide();
             }
         }
 

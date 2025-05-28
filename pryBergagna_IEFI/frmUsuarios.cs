@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,140 +22,111 @@ namespace pryBergagna_IEFI
         public frmUsuarios()
         {
             InitializeComponent();
+            CargarUsuarios();
+        }
+
+        private void CargarUsuarios()
+        {
+            conexion.ListarBD(dgvUsuarios);
         }
 
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
-            conexion.ConectarBD(); 
-            conexion.ListarBD(dgvUsuarios);
+           
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtContraseña.Text))
             {
-                string Nombre = txtNomUsuario.Text;
-                string Contraseña = txtConUsuario.Text;
-
-                clsUsuario nuevousuario = new clsUsuario(0, Nombre, Contraseña, 2);
-
-                conexion.Agregar(nuevousuario);
-                conexion.ListarBD(dgvUsuarios);
-
-                LimpiarCampos();
-
-                btnNuevo.Enabled = false;
-                btnModificar.Enabled = true;
-                btnEliminar.Enabled = true;
+                MessageBox.Show("Complete nombre y contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Por favor, complete todos los campos requeridos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
+            clsUsuario nuevoUsuario = new clsUsuario(0, txtNombre.Text, txtContraseña.Text, 1);
+            conexion.Agregar(nuevoUsuario);
+            LimpiarCampos();
+            CargarUsuarios();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (dgvUsuarios.SelectedRows.Count == 0)
             {
-                clsUsuario usuario = new clsUsuario(IdSeleccionado, txtNomUsuario.Text, txtConUsuario.Text, 0);
-
-                conexion.Modificar(usuario);
-                conexion.ListarBD(dgvUsuarios);
-
-                LimpiarCampos();
+                MessageBox.Show("Seleccione un usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Por favor, complete todos los campos requeridos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
+            DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
+            clsUsuario usuario = new clsUsuario(
+                Convert.ToInt32(fila.Cells["Id"].Value),
+                txtNombre.Text,
+                txtContraseña.Text,
+                Convert.ToInt32(fila.Cells["RolId"].Value)
+            );
+
+            conexion.Modificar(usuario);
+            CargarUsuarios();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("¿Estás seguro de que deseas eliminar este Usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
+            if (dgvUsuarios.SelectedRows.Count == 0)
             {
-                conexion.Eliminar(IdSeleccionado);
-                conexion.ListarBD(dgvUsuarios);
+                MessageBox.Show("Seleccione un usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                LimpiarCampos();
+            if (MessageBox.Show("¿Está seguro que desea eliminar este usuario?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int id = Convert.ToInt32(dgvUsuarios.SelectedRows[0].Cells["Id"].Value);
+                conexion.Eliminar(id);
+                CargarUsuarios();
             }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string busqueda = txtBusUsuario.Text;
-            conexion.BuscarporNombre(dgvUsuarios, busqueda);
-
-            LimpiarCampos();
+            if (!string.IsNullOrEmpty(txtBuscar.Text))
+            {
+                conexion.BuscarporNombre(dgvUsuarios, txtBuscar.Text);
+            }
+            else
+            {
+                CargarUsuarios();
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            conexion.ListarBD(dgvUsuarios);
+            CargarUsuarios();
             LimpiarCampos();
+            txtBuscar.Text = "";
+            MessageBox.Show("Lista de usuarios actualizada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
-
-            txtNomUsuario.Focus();
-            conexion.ListarBD(dgvUsuarios);
-
-            btnNuevo.Enabled = true;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
+            this.Close(); // Cierra este formulario
+            frmInicio inicio = new frmInicio(); // Asume que tienes un formulario llamado frmInicio
+            inicio.Show();
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (f.RowIndex >= 0)
+            if (dgvUsuarios.SelectedRows.Count > 0)
             {
-                DataGridViewRow fila = dgvUsuarios.Rows[f.RowIndex];
-
-                IdSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
-
-                txtNomUsuario.Text = fila.Cells["Nombre"].Value.ToString();
-                txtConUsuario.Text = fila.Cells["Contraseña"].Value.ToString();
-
-
-                btnNuevo.Enabled = false;
-                btnModificar.Enabled = true;
-                btnEliminar.Enabled = true;
+                DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
+                txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                txtContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
             }
         }
-
-        private bool validarCampos()
-        {
-            epValidacion.Clear();
-
-            if (string.IsNullOrWhiteSpace(txtNomUsuario.Text))
-            {
-                epValidacion.SetError(txtNomUsuario, "Debe ingresar un nombre de usuario");
-                txtNomUsuario.Focus();
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtConUsuario.Text))
-            {
-                epValidacion.SetError(txtConUsuario, "Debe ingresar una contraseña");
-                txtConUsuario.Focus();
-                return false;
-            }
-
-            return true; //esta todo correcto//
-        }
-
 
         private void LimpiarCampos()
         {
-            txtNomUsuario.Text = "";
-            txtConUsuario.Text = "";
-            txtBusUsuario.Text = "";
-            IdSeleccionado = 0;
+            txtNombre.Text = "";
+            txtContraseña.Text = "";
         }
     }
 }
