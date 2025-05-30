@@ -103,14 +103,8 @@ namespace pryBergagna_IEFI
             CargarUsuarios();
             LimpiarCampos();
             txtBuscar.Text = "";
+            dgvUsuarios.ClearSelection();  // Desseleccionar filas
             MessageBox.Show("Lista de usuarios actualizada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close(); // Cierra este formulario
-            frmInicio inicio = new frmInicio(); // Asume que tienes un formulario llamado frmInicio
-            inicio.Show();
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

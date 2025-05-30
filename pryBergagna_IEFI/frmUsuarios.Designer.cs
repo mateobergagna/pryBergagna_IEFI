@@ -30,7 +30,6 @@
         {
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.mrcUsuarios = new System.Windows.Forms.GroupBox();
@@ -64,19 +63,9 @@
             this.txtBuscar.Size = new System.Drawing.Size(216, 32);
             this.txtBuscar.TabIndex = 14;
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(668, 9);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(81, 35);
-            this.btnCancelar.TabIndex = 16;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(575, 9);
+            this.btnVolver.Location = new System.Drawing.Point(671, 9);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(87, 35);
             this.btnVolver.TabIndex = 15;
@@ -198,7 +187,6 @@
             this.ClientSize = new System.Drawing.Size(774, 373);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.mrcUsuarios);
@@ -217,7 +205,6 @@
 
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.GroupBox mrcUsuarios;

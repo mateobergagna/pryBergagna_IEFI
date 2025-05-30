@@ -12,6 +12,7 @@ namespace pryBergagna_IEFI
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
         public int RolId { get; set; }
+        public string NombreUsuario { get; set; }
 
         public clsUsuario(int id, string nombre, string contraseña, int rolId)
         {

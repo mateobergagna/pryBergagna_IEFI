@@ -13,7 +13,7 @@ namespace pryBergagna_IEFI
     {
 
         // Cadena de conexión 
-        private string cadena = @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
+        private string cadena = @"Server=DESKTOP-2KP08TQ\Mateo;Database=GestionUsuarios;Trusted_Connection=True;";
 
         public bool ConectarBD()
         {
@@ -249,6 +249,13 @@ namespace pryBergagna_IEFI
             catch (Exception error)
             {
                 MessageBox.Show("No se pudieron cargar las sesiones correctamente. Detalles: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public string CadenaConexion
+        {
+            get
+            {
+                return @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
             }
         }
     }

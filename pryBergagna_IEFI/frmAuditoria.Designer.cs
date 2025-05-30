@@ -47,6 +47,7 @@
             this.dgvAuditoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAuditoria.Size = new System.Drawing.Size(774, 424);
             this.dgvAuditoria.TabIndex = 1;
+            this.dgvAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuditoria_CellContentClick);
             // 
             // frmAuditoria
             // 
