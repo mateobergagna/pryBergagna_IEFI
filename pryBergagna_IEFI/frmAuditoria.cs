@@ -19,12 +19,11 @@ namespace pryBergagna_IEFI
         public frmAuditoria()
         {
             InitializeComponent();
-            CargarAuditoria();
         }
 
         private void frmAuditoria_Load(object sender, EventArgs e)
         {
-
+            CargarAuditoria();
         }
 
         private void CargarAuditoria()
@@ -37,17 +36,23 @@ namespace pryBergagna_IEFI
                 try
                 {
                     conn.Open();
-                    string consulta = @"SELECT U.Nombre AS Usuario, R.Nombre AS Rol, S.FechaHoraInicio AS 'Inicio de Sesión'
-                                FROM Sesiones S
-                                INNER JOIN Usuarios U ON S.IdUsuario = U.Id
-                                INNER JOIN Roles R ON U.IdRol = R.Id";
+                    string consulta = @"SELECT U.Nombre AS Usuario, R.Nombre AS Rol, 
+                           S.FechaInicio AS 'Fecha', S.HoraInicio AS 'Hora Inicio'
+                    FROM Sesiones S
+                    INNER JOIN Usuarios U ON S.IdUsuario = U.Id
+                    INNER JOIN Roles R ON U.RolId = R.Id";
 
                     SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conn);
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
 
                     dgvAuditoria.DataSource = tabla;
+                    dgvAuditoria.ReadOnly = true;
+                    dgvAuditoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvAuditoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 }
+
+
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar auditoría: " + ex.Message);
@@ -57,9 +62,7 @@ namespace pryBergagna_IEFI
 
         private void dgvAuditoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvAuditoria.ReadOnly = true;
-            dgvAuditoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvAuditoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
         }
     }
 }

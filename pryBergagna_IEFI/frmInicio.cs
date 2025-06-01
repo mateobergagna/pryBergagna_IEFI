@@ -15,6 +15,9 @@ namespace pryBergagna_IEFI
         private clsUsuario usuarioLogueado;
         private DateTime horaInicio;
         private int tiempoActual = 0;
+        private DateTime horaInicioSesion;
+        private string nombreUsuarioActual = "admin"; 
+
         clsConexionBD conexion = new clsConexionBD();
 
         public frmInicio(clsUsuario usuario, DateTime inicio)
@@ -37,7 +40,7 @@ namespace pryBergagna_IEFI
         
         private void frmInicio_Load(object sender, EventArgs e)
         {
-             
+            horaInicioSesion = DateTime.Now;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -65,6 +68,15 @@ namespace pryBergagna_IEFI
         {
             frmAuditoria auditoria = new frmAuditoria();
             auditoria.ShowDialog();
+        }
+
+        private void frmInicio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DateTime horaFin = DateTime.Now;
+            TimeSpan duracion = horaFin - horaInicioSesion;
+
+            clsConexionBD conexion = new clsConexionBD();
+            conexion.GuardarSesion(nombreUsuarioActual, horaInicioSesion, horaFin, duracion);
         }
     }
 }

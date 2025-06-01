@@ -13,7 +13,13 @@ namespace pryBergagna_IEFI
     {
 
         // Cadena de conexión 
-        private string cadena = @"Server=DESKTOP-2KP08TQ\Mateo;Database=GestionUsuarios;Trusted_Connection=True;";
+        public string cadena = @"Server=DESKTOP-2KP08TQ\Mateo;Database=GestionUsuarios;Trusted_Connection=True;";
+        //string cadena = @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
+  
+        public string CadenaConexion
+        {
+            get { return cadena; }
+        }
 
         public bool ConectarBD()
         {
@@ -40,9 +46,7 @@ namespace pryBergagna_IEFI
                 using (SqlConnection conexion = new SqlConnection(cadena))
                 {
                     conexion.Open();
-                    string query = @"SELECT u.Id, u.Nombre, u.Contraseña, r.Nombre AS Rol 
-                                     FROM Usuarios u 
-                                     INNER JOIN Roles r ON u.RolId = r.Id;";
+                    string query = "SELECT Id, Nombre, Contraseña, RolId, DNI, Gmail, Telefono FROM Usuarios";
                     SqlCommand comando = new SqlCommand(query, conexion);
                     SqlDataAdapter adaptador = new SqlDataAdapter(comando);
 
@@ -66,21 +70,23 @@ namespace pryBergagna_IEFI
                 using (SqlConnection conexion = new SqlConnection(cadena))
                 {
                     conexion.Open();
-                    string query = "INSERT INTO Usuarios (Nombre, Contraseña, RolId) VALUES (@nombre, @contraseña, @rolId)";
-                    SqlCommand comando = new SqlCommand(query, conexion);
-                    comando.Parameters.AddWithValue("@nombre", usuario.Nombre);
-                    comando.Parameters.AddWithValue("@contraseña", usuario.Contraseña);
-                    comando.Parameters.AddWithValue("@rolId", usuario.RolId); // Usa el rol del objeto
-
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("Usuario agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SqlCommand cmd = new SqlCommand(
+                        "INSERT INTO Usuarios (Nombre, Contraseña, RolId, DNI, Gmail, Telefono) VALUES (@Nombre, @Contraseña, @RolId, @DNI, @Gmail, @Telefono)", conexion);
+                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    cmd.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
+                    cmd.Parameters.AddWithValue("@RolId", usuario.RolId);
+                    cmd.Parameters.AddWithValue("@DNI", usuario.DNI);
+                    cmd.Parameters.AddWithValue("@Gmail", usuario.Gmail);
+                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
+                    cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar usuario: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al agregar el usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Modificar usuario existente
         public void Modificar(clsUsuario usuario)
@@ -90,19 +96,21 @@ namespace pryBergagna_IEFI
                 using (SqlConnection conexion = new SqlConnection(cadena))
                 {
                     conexion.Open();
-                    string query = "UPDATE Usuarios SET Nombre = @nombre, Contraseña = @contraseña WHERE Id = @id";
-                    SqlCommand comando = new SqlCommand(query, conexion);
-                    comando.Parameters.AddWithValue("@nombre", usuario.Nombre);
-                    comando.Parameters.AddWithValue("@contraseña", usuario.Contraseña);
-                    comando.Parameters.AddWithValue("@id", usuario.Id);
-
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SqlCommand cmd = new SqlCommand(
+                        "UPDATE Usuarios SET Nombre = @Nombre, Contraseña = @Contraseña, RolId = @RolId, DNI = @DNI, Gmail = @Gmail, Telefono = @Telefono WHERE Id = @Id", conexion);
+                    cmd.Parameters.AddWithValue("@Id", usuario.Id);
+                    cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    cmd.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
+                    cmd.Parameters.AddWithValue("@RolId", usuario.RolId);
+                    cmd.Parameters.AddWithValue("@DNI", usuario.DNI);
+                    cmd.Parameters.AddWithValue("@Gmail", usuario.Gmail);
+                    cmd.Parameters.AddWithValue("@Telefono", usuario.Telefono);
+                    cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar usuario: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar el usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -249,13 +257,6 @@ namespace pryBergagna_IEFI
             catch (Exception error)
             {
                 MessageBox.Show("No se pudieron cargar las sesiones correctamente. Detalles: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        public string CadenaConexion
-        {
-            get
-            {
-                return @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
             }
         }
     }

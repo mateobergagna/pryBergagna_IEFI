@@ -32,7 +32,12 @@ namespace pryBergagna_IEFI
 
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
-           
+            conexion.ListarBD(dgvUsuarios);
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+
+            // Asociar evento SelectionChanged
+            dgvUsuarios.SelectionChanged += dgvUsuarios_SelectionChanged;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -43,30 +48,35 @@ namespace pryBergagna_IEFI
                 return;
             }
 
-            clsUsuario nuevoUsuario = new clsUsuario(0, txtNombre.Text, txtContraseña.Text, 1);
+            clsUsuario nuevoUsuario = new clsUsuario(0,txtNombre.Text,txtContraseña.Text,1,txtDNI.Text, txtGmail.Text,txtTelefono.Text);
             conexion.Agregar(nuevoUsuario);
-            LimpiarCampos();
-            CargarUsuarios();
+            conexion.ListarBD(dgvUsuarios); // Recargar la grilla con el nuevo usuario
+            LimpiarCampos(); // Limpiar los campos
+
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count == 0)
+            if (dgvUsuarios.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Seleccione un usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
+
+                clsUsuario usuario = new clsUsuario(
+                    Convert.ToInt32(fila.Cells["Id"].Value),
+                    txtNombre.Text,
+                    txtContraseña.Text,
+                    Convert.ToInt32(fila.Cells["RolId"].Value),
+                    txtDNI.Text,
+                    txtGmail.Text,
+                    txtTelefono.Text
+                );
+
+                conexion.Modificar(usuario);
+                conexion.ListarBD(dgvUsuarios); // Actualizar la grilla
+                LimpiarCampos();
             }
 
-            DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
-            clsUsuario usuario = new clsUsuario(
-                Convert.ToInt32(fila.Cells["Id"].Value),
-                txtNombre.Text,
-                txtContraseña.Text,
-                Convert.ToInt32(fila.Cells["RolId"].Value)
-            );
-
-            conexion.Modificar(usuario);
-            CargarUsuarios();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -112,8 +122,26 @@ namespace pryBergagna_IEFI
             if (dgvUsuarios.SelectedRows.Count > 0)
             {
                 DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
-                txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
-                txtContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
+
+                txtNombre.Text = fila.Cells["Nombre"].Value?.ToString() ?? "";
+                txtContraseña.Text = fila.Cells["Contraseña"].Value?.ToString() ?? "";
+                txtDNI.Text = fila.Cells["DNI"].Value?.ToString() ?? "";
+                txtGmail.Text = fila.Cells["Gmail"].Value?.ToString() ?? "";
+                txtTelefono.Text = fila.Cells["Telefono"].Value?.ToString() ?? "";
+            }
+
+        }
+        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.SelectedRows.Count > 0)
+            {
+                btnModificar.Enabled = true;
+                btnEliminar.Enabled = true;
+            }
+            else
+            {
+                btnModificar.Enabled = false;
+                btnEliminar.Enabled = false;
             }
         }
 
@@ -121,6 +149,9 @@ namespace pryBergagna_IEFI
         {
             txtNombre.Text = "";
             txtContraseña.Text = "";
+            txtDNI.Text = "";
+            txtGmail.Text = "";
+            txtTelefono.Text = "";
         }
     }
 }

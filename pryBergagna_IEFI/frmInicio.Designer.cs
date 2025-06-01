@@ -48,6 +48,7 @@
             // 
             // menuInicio
             // 
+            this.menuInicio.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.menuInicio.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuInicio.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuHome,
@@ -132,7 +133,7 @@
             // lblTiempo
             // 
             this.lblTiempo.Name = "lblTiempo";
-            this.lblTiempo.Size = new System.Drawing.Size(433, 20);
+            this.lblTiempo.Size = new System.Drawing.Size(472, 20);
             this.lblTiempo.Spring = true;
             this.lblTiempo.Text = "Tiempo";
             // 
@@ -156,11 +157,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.statusBarInicio);
             this.Controls.Add(this.menuInicio);
             this.Name = "frmInicio";
             this.Text = "frmInicio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInicio_FormClosing);
             this.Load += new System.EventHandler(this.frmInicio_Load);
             this.menuInicio.ResumeLayout(false);
             this.menuInicio.PerformLayout();

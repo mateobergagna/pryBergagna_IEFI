@@ -42,7 +42,7 @@ namespace pryBergagna_IEFI
                 return;
             }
 
-            clsUsuario usuario = new clsUsuario(0, txtUsuario.Text, txtContraseña.Text, 0);
+            clsUsuario usuario = new clsUsuario(txtUsuario.Text, txtContraseña.Text);
 
             if (conexion.VerificarUsuario(usuario))
             {
