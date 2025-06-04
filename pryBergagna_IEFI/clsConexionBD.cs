@@ -222,7 +222,8 @@ namespace pryBergagna_IEFI
                     comando.Parameters.AddWithValue("@FechaInicio", horaInicio.Date);
                     comando.Parameters.AddWithValue("@HoraInicio", horaInicio);
                     comando.Parameters.AddWithValue("@HoraFin", horaFin);
-                    comando.Parameters.AddWithValue("@TotalHoras", tiempoTotal);
+                    comando.Parameters.Add("@TotalHoras", SqlDbType.Decimal).Value = Math.Round(tiempoTotal.TotalHours, 2);
+
 
                     comando.ExecuteNonQuery();
                 }

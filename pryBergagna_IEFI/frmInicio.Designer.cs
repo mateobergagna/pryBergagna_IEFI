@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuInicio = new System.Windows.Forms.MenuStrip();
-            this.mnuHome = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTareas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +40,9 @@
             this.lblFechaInicio = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mnuHome = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.menuInicio.SuspendLayout();
             this.statusBarInicio.SuspendLayout();
             this.SuspendLayout();
@@ -59,22 +60,6 @@
             this.menuInicio.Size = new System.Drawing.Size(800, 28);
             this.menuInicio.TabIndex = 2;
             this.menuInicio.Text = "menuStrip1";
-            // 
-            // mnuHome
-            // 
-            this.mnuHome.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuSalir});
-            this.mnuHome.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.mnuHome.Name = "mnuHome";
-            this.mnuHome.Size = new System.Drawing.Size(14, 24);
-            // 
-            // mnuSalir
-            // 
-            this.mnuSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(224, 26);
-            this.mnuSalir.Text = "Cerrar Sesión";
-            this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
             // mnuTareas
             // 
@@ -97,7 +82,7 @@
             // 
             this.mnuUsuarios.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuUsuarios.Name = "mnuUsuarios";
-            this.mnuUsuarios.Size = new System.Drawing.Size(224, 26);
+            this.mnuUsuarios.Size = new System.Drawing.Size(154, 26);
             this.mnuUsuarios.Text = "Usuarios";
             this.mnuUsuarios.Click += new System.EventHandler(this.mnuUsuarios_Click);
             // 
@@ -105,7 +90,7 @@
             // 
             this.mnuAuditoria.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuAuditoria.Name = "mnuAuditoria";
-            this.mnuAuditoria.Size = new System.Drawing.Size(224, 26);
+            this.mnuAuditoria.Size = new System.Drawing.Size(154, 26);
             this.mnuAuditoria.Text = "Auditoria";
             this.mnuAuditoria.Click += new System.EventHandler(this.mnuAuditoria_Click);
             // 
@@ -116,7 +101,8 @@
             this.lblUsuarioActivo,
             this.lblTiempo,
             this.lblFechaInicio,
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
             this.statusBarInicio.Location = new System.Drawing.Point(0, 424);
             this.statusBarInicio.Name = "statusBarInicio";
             this.statusBarInicio.Size = new System.Drawing.Size(800, 26);
@@ -133,7 +119,7 @@
             // lblTiempo
             // 
             this.lblTiempo.Name = "lblTiempo";
-            this.lblTiempo.Size = new System.Drawing.Size(472, 20);
+            this.lblTiempo.Size = new System.Drawing.Size(623, 20);
             this.lblTiempo.Spring = true;
             this.lblTiempo.Text = "Tiempo";
             // 
@@ -146,12 +132,34 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
+            // 
+            // mnuHome
+            // 
+            this.mnuHome.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.cerrar;
+            this.mnuHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.mnuHome.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuSalir});
+            this.mnuHome.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.mnuHome.Name = "mnuHome";
+            this.mnuHome.Size = new System.Drawing.Size(14, 24);
+            // 
+            // mnuSalir
+            // 
+            this.mnuSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.mnuSalir.Name = "mnuSalir";
+            this.mnuSalir.Size = new System.Drawing.Size(224, 26);
+            this.mnuSalir.Text = "Cerrar Sesión";
+            this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
             // frmInicio
             // 
@@ -189,5 +197,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblFechaInicio;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

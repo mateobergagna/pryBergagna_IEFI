@@ -29,7 +29,8 @@ namespace pryBergagna_IEFI
             horaInicio = inicio;
 
             // Mostrar usuario activo en la barra de estado
-            lblUsuarioActivo.Text = $"Usuario Activo: {usuario.NombreUsuario}";
+            lblUsuarioActivo.Text = $"Usuario: {usuario.NombreUsuario} - Rol: {(usuario.RolId == 1 ? "Administrador" : "Usuario")}";
+
 
             // Mostrar fecha actual
             lblFechaInicio.Text = $"Fecha: {DateTime.Now.ToShortDateString()}";
@@ -41,6 +42,18 @@ namespace pryBergagna_IEFI
         private void frmInicio_Load(object sender, EventArgs e)
         {
             horaInicioSesion = DateTime.Now;
+
+            // RESTRICCIÓN DE ACCESO SEGÚN ROL
+            if (usuarioLogueado.RolId == 2)
+            {
+                // Oculta menú Administración para usuarios comunes
+                mnuUsuarios.Visible = false;
+                mnuAuditoria.Visible = false;
+
+                // Se puede deshabilitar en lugar de ocultarlos:
+                // mnuUsuarios.Enabled = false;
+                // mnuAuditoria.Enabled = false;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

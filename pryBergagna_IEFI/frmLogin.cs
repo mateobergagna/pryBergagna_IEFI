@@ -18,6 +18,7 @@ namespace pryBergagna_IEFI
 
         //Variable intentos
         int intentos = 3;
+        private bool mostrarContraseña = false;
 
 
         public frmLogin()
@@ -32,6 +33,8 @@ namespace pryBergagna_IEFI
                 MessageBox.Show("No se pudo conectar a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+
+            txtContraseña.UseSystemPasswordChar = true;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -58,6 +61,20 @@ namespace pryBergagna_IEFI
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnOcultar_Click(object sender, EventArgs e)
+        {
+            mostrarContraseña = !mostrarContraseña;
+
+            if (mostrarContraseña)
+            {
+                txtContraseña.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtContraseña.UseSystemPasswordChar = true;         
+            }
         }
     }
 }

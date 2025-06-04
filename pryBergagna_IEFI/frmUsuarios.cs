@@ -35,6 +35,11 @@ namespace pryBergagna_IEFI
             conexion.ListarBD(dgvUsuarios);
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
+            cmbRol.Items.Clear();
+            cmbRol.Items.Add("1");
+            cmbRol.Items.Add("2");
+            cmbRol.SelectedIndex = 0; // Selecciona el primer valor por defecto
+
 
             // Asociar evento SelectionChanged
             dgvUsuarios.SelectionChanged += dgvUsuarios_SelectionChanged;
@@ -48,7 +53,8 @@ namespace pryBergagna_IEFI
                 return;
             }
 
-            clsUsuario nuevoUsuario = new clsUsuario(0,txtNombre.Text,txtContraseña.Text,1,txtDNI.Text, txtGmail.Text,txtTelefono.Text);
+            int rolSeleccionado = Convert.ToInt32(cmbRol.SelectedItem);
+            clsUsuario nuevoUsuario = new clsUsuario(0, txtNombre.Text, txtContraseña.Text, rolSeleccionado, txtDNI.Text, txtGmail.Text, txtTelefono.Text);
             conexion.Agregar(nuevoUsuario);
             conexion.ListarBD(dgvUsuarios); // Recargar la grilla con el nuevo usuario
             LimpiarCampos(); // Limpiar los campos
@@ -66,7 +72,7 @@ namespace pryBergagna_IEFI
                     Convert.ToInt32(fila.Cells["Id"].Value),
                     txtNombre.Text,
                     txtContraseña.Text,
-                    Convert.ToInt32(fila.Cells["RolId"].Value),
+                    Convert.ToInt32(cmbRol.SelectedItem),
                     txtDNI.Text,
                     txtGmail.Text,
                     txtTelefono.Text
@@ -128,6 +134,7 @@ namespace pryBergagna_IEFI
                 txtDNI.Text = fila.Cells["DNI"].Value?.ToString() ?? "";
                 txtGmail.Text = fila.Cells["Gmail"].Value?.ToString() ?? "";
                 txtTelefono.Text = fila.Cells["Telefono"].Value?.ToString() ?? "";
+                cmbRol.SelectedItem = fila.Cells["RolId"].Value?.ToString();
             }
 
         }
@@ -152,6 +159,7 @@ namespace pryBergagna_IEFI
             txtDNI.Text = "";
             txtGmail.Text = "";
             txtTelefono.Text = "";
+            cmbRol.SelectedIndex = 0;
         }
     }
 }

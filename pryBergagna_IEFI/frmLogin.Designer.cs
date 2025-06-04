@@ -31,18 +31,18 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.pnlContraseña = new System.Windows.Forms.Panel();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.pnlUsuario = new System.Windows.Forms.Panel();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnOcultar = new System.Windows.Forms.Button();
             this.pbContraseña = new System.Windows.Forms.PictureBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
+            this.pnlUsuario = new System.Windows.Forms.Panel();
             this.pbUsuario = new System.Windows.Forms.PictureBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContraseña.SuspendLayout();
-            this.pnlUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbContraseña)).BeginInit();
+            this.pnlUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -87,6 +87,33 @@
             this.pnlContraseña.Size = new System.Drawing.Size(284, 66);
             this.pnlContraseña.TabIndex = 7;
             // 
+            // btnOcultar
+            // 
+            this.btnOcultar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnOcultar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.esconder;
+            this.btnOcultar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOcultar.FlatAppearance.BorderSize = 0;
+            this.btnOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOcultar.Location = new System.Drawing.Point(234, 21);
+            this.btnOcultar.Name = "btnOcultar";
+            this.btnOcultar.Size = new System.Drawing.Size(38, 25);
+            this.btnOcultar.TabIndex = 10;
+            this.btnOcultar.UseVisualStyleBackColor = false;
+            this.btnOcultar.Click += new System.EventHandler(this.btnOcultar_Click);
+            // 
+            // pbContraseña
+            // 
+            this.pbContraseña.BackColor = System.Drawing.Color.Transparent;
+            this.pbContraseña.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.contrasena;
+            this.pbContraseña.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbContraseña.ErrorImage = null;
+            this.pbContraseña.Location = new System.Drawing.Point(8, 14);
+            this.pbContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.pbContraseña.Name = "pbContraseña";
+            this.pbContraseña.Size = new System.Drawing.Size(44, 37);
+            this.pbContraseña.TabIndex = 8;
+            this.pbContraseña.TabStop = false;
+            // 
             // txtContraseña
             // 
             this.txtContraseña.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -109,6 +136,20 @@
             this.pnlUsuario.Name = "pnlUsuario";
             this.pnlUsuario.Size = new System.Drawing.Size(284, 66);
             this.pnlUsuario.TabIndex = 6;
+            // 
+            // pbUsuario
+            // 
+            this.pbUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.pbUsuario.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.acceso__3_;
+            this.pbUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbUsuario.ErrorImage = null;
+            this.pbUsuario.Location = new System.Drawing.Point(8, 14);
+            this.pbUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.pbUsuario.Name = "pbUsuario";
+            this.pbUsuario.Size = new System.Drawing.Size(44, 37);
+            this.pbUsuario.TabIndex = 7;
+            this.pbUsuario.TabStop = false;
+            this.pbUsuario.WaitOnLoad = true;
             // 
             // txtUsuario
             // 
@@ -136,46 +177,6 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // btnOcultar
-            // 
-            this.btnOcultar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnOcultar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.esconder;
-            this.btnOcultar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOcultar.FlatAppearance.BorderSize = 0;
-            this.btnOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOcultar.Location = new System.Drawing.Point(234, 21);
-            this.btnOcultar.Name = "btnOcultar";
-            this.btnOcultar.Size = new System.Drawing.Size(38, 25);
-            this.btnOcultar.TabIndex = 10;
-            this.btnOcultar.UseVisualStyleBackColor = false;
-            // 
-            // pbContraseña
-            // 
-            this.pbContraseña.BackColor = System.Drawing.Color.Transparent;
-            this.pbContraseña.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.contrasena;
-            this.pbContraseña.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbContraseña.ErrorImage = null;
-            this.pbContraseña.Location = new System.Drawing.Point(8, 14);
-            this.pbContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.pbContraseña.Name = "pbContraseña";
-            this.pbContraseña.Size = new System.Drawing.Size(44, 37);
-            this.pbContraseña.TabIndex = 8;
-            this.pbContraseña.TabStop = false;
-            // 
-            // pbUsuario
-            // 
-            this.pbUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.pbUsuario.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.acceso__3_;
-            this.pbUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbUsuario.ErrorImage = null;
-            this.pbUsuario.Location = new System.Drawing.Point(8, 14);
-            this.pbUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.pbUsuario.Name = "pbUsuario";
-            this.pbUsuario.Size = new System.Drawing.Size(44, 37);
-            this.pbUsuario.TabIndex = 7;
-            this.pbUsuario.TabStop = false;
-            this.pbUsuario.WaitOnLoad = true;
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -193,11 +194,11 @@
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlContraseña.ResumeLayout(false);
             this.pnlContraseña.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbContraseña)).EndInit();
             this.pnlUsuario.ResumeLayout(false);
             this.pnlUsuario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbContraseña)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
