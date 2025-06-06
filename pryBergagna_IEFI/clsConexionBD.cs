@@ -258,6 +258,89 @@ namespace pryBergagna_IEFI
             catch (Exception error)
             {
                 MessageBox.Show("No se pudieron cargar las sesiones correctamente. Detalles: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }       
+        }
+
+        public void AgregarTarea(clsTarea tarea)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadena))
+                {
+                    conexion.Open();
+                    string query = @"INSERT INTO Tareas 
+                (Fecha, Tarea, Lugar, Comentarios, Uniforme, LicenciaEstudio, LicenciaVacacion, ReclamoSalario, ReclamoRecibo)
+                VALUES 
+                (@Fecha, @Tarea, @Lugar, @Comentarios, @Uniforme, @LicenciaEstudio, @LicenciaVacacion, @ReclamoSalario, @ReclamoRecibo)";
+
+                    SqlCommand comando = new SqlCommand(query, conexion);
+                    comando.Parameters.AddWithValue("@Fecha", tarea.Fecha);
+                    comando.Parameters.AddWithValue("@Tarea", tarea.Tarea);
+                    comando.Parameters.AddWithValue("@Lugar", tarea.Lugar);
+                    comando.Parameters.AddWithValue("@Comentarios", tarea.Comentarios);
+                    comando.Parameters.AddWithValue("@Uniforme", tarea.Uniforme);
+                    comando.Parameters.AddWithValue("@LicenciaEstudio", tarea.LicenciaEstudio);
+                    comando.Parameters.AddWithValue("@LicenciaVacacion", tarea.LicenciaVacacion);
+                    comando.Parameters.AddWithValue("@ReclamoSalario", tarea.ReclamoSalario);
+                    comando.Parameters.AddWithValue("@ReclamoRecibo", tarea.ReclamoRecibo);
+
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("Tarea registrada con éxito.", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la tarea: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void ListarTareas(DataGridView grilla)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadena))
+                {
+                    conexion.Open();
+                    string query = "SELECT * FROM Tareas ORDER BY Fecha DESC";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    grilla.DataSource = tabla;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al listar tareas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void BuscarTareasPorFecha(DataGridView grilla, DateTime fecha)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadena))
+                {
+                    conexion.Open();
+                    string query = "SELECT * FROM Tareas WHERE CONVERT(date, Fecha) = @fecha";
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+
+                    SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    grilla.DataSource = tabla;
+
+                    if (tabla.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron tareas para esa fecha.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar tareas por fecha: " + ex.Message);
             }
         }
     }

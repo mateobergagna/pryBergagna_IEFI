@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.menuInicio = new System.Windows.Forms.MenuStrip();
             this.mnuTareas = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrosTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAuditoria = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,8 +41,8 @@
             this.lblTiempo = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFechaInicio = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mnuHome = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.menuInicio.SuspendLayout();
@@ -50,6 +52,7 @@
             // menuInicio
             // 
             this.menuInicio.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.menuInicio.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuInicio.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuInicio.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuHome,
@@ -57,17 +60,34 @@
             this.mnuAdmin});
             this.menuInicio.Location = new System.Drawing.Point(0, 0);
             this.menuInicio.Name = "menuInicio";
-            this.menuInicio.Size = new System.Drawing.Size(800, 28);
+            this.menuInicio.Size = new System.Drawing.Size(1017, 33);
             this.menuInicio.TabIndex = 2;
             this.menuInicio.Text = "menuStrip1";
             // 
             // mnuTareas
             // 
+            this.mnuTareas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrosTareasToolStripMenuItem,
+            this.tareasToolStripMenuItem});
             this.mnuTareas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mnuTareas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuTareas.Name = "mnuTareas";
-            this.mnuTareas.Size = new System.Drawing.Size(64, 24);
+            this.mnuTareas.Size = new System.Drawing.Size(64, 26);
             this.mnuTareas.Text = "Tareas";
+            // 
+            // registrosTareasToolStripMenuItem
+            // 
+            this.registrosTareasToolStripMenuItem.Name = "registrosTareasToolStripMenuItem";
+            this.registrosTareasToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.registrosTareasToolStripMenuItem.Text = "Registros Tareas";
+            this.registrosTareasToolStripMenuItem.Click += new System.EventHandler(this.registrosTareasToolStripMenuItem_Click);
+            // 
+            // tareasToolStripMenuItem
+            // 
+            this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
+            this.tareasToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.tareasToolStripMenuItem.Text = "Tareas";
+            this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
             // mnuAdmin
             // 
@@ -75,7 +95,7 @@
             this.mnuUsuarios,
             this.mnuAuditoria});
             this.mnuAdmin.Name = "mnuAdmin";
-            this.mnuAdmin.Size = new System.Drawing.Size(123, 24);
+            this.mnuAdmin.Size = new System.Drawing.Size(123, 26);
             this.mnuAdmin.Text = "Administración";
             // 
             // mnuUsuarios
@@ -103,9 +123,9 @@
             this.lblFechaInicio,
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusBarInicio.Location = new System.Drawing.Point(0, 424);
+            this.statusBarInicio.Location = new System.Drawing.Point(0, 479);
             this.statusBarInicio.Name = "statusBarInicio";
-            this.statusBarInicio.Size = new System.Drawing.Size(800, 26);
+            this.statusBarInicio.Size = new System.Drawing.Size(1017, 26);
             this.statusBarInicio.TabIndex = 3;
             this.statusBarInicio.Text = "statusStrip1";
             // 
@@ -119,7 +139,7 @@
             // lblTiempo
             // 
             this.lblTiempo.Name = "lblTiempo";
-            this.lblTiempo.Size = new System.Drawing.Size(623, 20);
+            this.lblTiempo.Size = new System.Drawing.Size(840, 20);
             this.lblTiempo.Spring = true;
             this.lblTiempo.Text = "Tiempo";
             // 
@@ -134,14 +154,14 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // mnuHome
             // 
@@ -151,13 +171,13 @@
             this.mnuSalir});
             this.mnuHome.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuHome.Name = "mnuHome";
-            this.mnuHome.Size = new System.Drawing.Size(14, 24);
+            this.mnuHome.Size = new System.Drawing.Size(14, 26);
             // 
             // mnuSalir
             // 
             this.mnuSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(224, 26);
+            this.mnuSalir.Size = new System.Drawing.Size(179, 26);
             this.mnuSalir.Text = "Cerrar Sesión";
             this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
@@ -166,10 +186,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1017, 505);
             this.Controls.Add(this.statusBarInicio);
             this.Controls.Add(this.menuInicio);
             this.Name = "frmInicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmInicio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInicio_FormClosing);
             this.Load += new System.EventHandler(this.frmInicio_Load);
@@ -198,5 +219,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripMenuItem registrosTareasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
     }
 }

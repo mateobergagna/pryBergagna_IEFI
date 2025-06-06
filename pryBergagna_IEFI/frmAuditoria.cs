@@ -59,10 +59,48 @@ namespace pryBergagna_IEFI
                 }
             }
         }
-
         private void dgvAuditoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string cadenaConexion = conexion.CadenaConexion;
+
+            using (SqlConnection conn = new SqlConnection(cadenaConexion))
+            {
+                try
+                {
+                    conn.Open();
+
+                    DateTime fechaSeleccionada = dtpFecha.Value.Date;
+                    string consulta = @"
+                SELECT U.Nombre AS Usuario, R.Nombre AS Rol, 
+                       S.FechaInicio AS 'Fecha', S.HoraInicio AS 'Hora Inicio'
+                FROM Sesiones S
+                INNER JOIN Usuarios U ON S.IdUsuario = U.Id
+                INNER JOIN Roles R ON U.RolId = R.Id
+                WHERE CAST(S.FechaInicio AS DATE) = @FechaSeleccionada";
+
+                    SqlCommand comando = new SqlCommand(consulta, conn);
+                    comando.Parameters.AddWithValue("@FechaSeleccionada", fechaSeleccionada);
+
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    dgvAuditoria.DataSource = tabla;
+
+                    if (tabla.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron registros para la fecha seleccionada.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al buscar auditoría: " + ex.Message);
+                }
+            }
         }
     }
 }

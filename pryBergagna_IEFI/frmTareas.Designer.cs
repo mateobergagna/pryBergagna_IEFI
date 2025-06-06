@@ -1,16 +1,16 @@
 ﻿namespace pryBergagna_IEFI
 {
-    partial class frmAuditoria
+    partial class frmTareas
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,41 +20,35 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvAuditoria = new System.Windows.Forms.DataGridView();
+            this.dgvTareas = new System.Windows.Forms.DataGridView();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFecha = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvAuditoria
+            // dgvTareas
             // 
-            this.dgvAuditoria.AllowUserToAddRows = false;
-            this.dgvAuditoria.AllowUserToDeleteRows = false;
-            this.dgvAuditoria.AllowUserToResizeColumns = false;
-            this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuditoria.Location = new System.Drawing.Point(13, 85);
-            this.dgvAuditoria.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvAuditoria.MultiSelect = false;
-            this.dgvAuditoria.Name = "dgvAuditoria";
-            this.dgvAuditoria.ReadOnly = true;
-            this.dgvAuditoria.RowHeadersWidth = 51;
-            this.dgvAuditoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAuditoria.Size = new System.Drawing.Size(774, 352);
-            this.dgvAuditoria.TabIndex = 1;
-            this.dgvAuditoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuditoria_CellContentClick);
+            this.dgvTareas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTareas.Location = new System.Drawing.Point(18, 70);
+            this.dgvTareas.Name = "dgvTareas";
+            this.dgvTareas.RowHeadersWidth = 51;
+            this.dgvTareas.RowTemplate.Height = 24;
+            this.dgvTareas.Size = new System.Drawing.Size(776, 359);
+            this.dgvTareas.TabIndex = 0;
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(13, 39);
+            this.dtpFecha.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFecha.Location = new System.Drawing.Point(17, 37);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(264, 22);
             this.dtpFecha.TabIndex = 17;
@@ -63,7 +57,7 @@
             // 
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(10, 11);
+            this.lblFecha.Location = new System.Drawing.Point(13, 9);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(63, 25);
@@ -77,14 +71,14 @@
             this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBuscar.FlatAppearance.BorderSize = 0;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(283, 26);
+            this.btnBuscar.Location = new System.Drawing.Point(287, 12);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(64, 52);
             this.btnBuscar.TabIndex = 18;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // frmAuditoria
+            // frmTareas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,12 +87,12 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.dgvAuditoria);
-            this.Name = "frmAuditoria";
+            this.Controls.Add(this.dgvTareas);
+            this.Name = "frmTareas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Auditoria";
-            this.Load += new System.EventHandler(this.frmAuditoria_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).EndInit();
+            this.Text = "frmTareas";
+            this.Load += new System.EventHandler(this.frmTareas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,10 +100,9 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvAuditoria;
+        private System.Windows.Forms.DataGridView dgvTareas;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Button btnBuscar;
     }
 }
-

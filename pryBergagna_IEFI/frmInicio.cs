@@ -91,5 +91,17 @@ namespace pryBergagna_IEFI
             clsConexionBD conexion = new clsConexionBD();
             conexion.GuardarSesion(nombreUsuarioActual, horaInicioSesion, horaFin, duracion);
         }
+
+        private void registrosTareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRegistro registro = new frmRegistro(); 
+            registro.ShowDialog();
+        }
+
+        private void tareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTareas formularioTareas = new frmTareas();
+            formularioTareas.ShowDialog(); 
+        }
     }
 }
