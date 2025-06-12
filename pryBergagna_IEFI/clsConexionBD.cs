@@ -15,12 +15,14 @@ namespace pryBergagna_IEFI
         // Cadena de conexión 
         public string cadena = @"Server=DESKTOP-2KP08TQ\Mateo;Database=GestionUsuarios;Trusted_Connection=True;";
         //string cadena = @"Server=.\SQLEXPRESS;Database=GestionUsuarios;Trusted_Connection=True;";
-  
+
+        // Propiedad que devuelve la cadena de conexión
         public string CadenaConexion
         {
             get { return cadena; }
         }
 
+        // Método para verificar si la conexión a la base de datos funciona correctamente
         public bool ConectarBD()
         {
             try
@@ -205,7 +207,7 @@ namespace pryBergagna_IEFI
             return loginExitoso;
         }
 
-        // Guardar sesión (ejemplo básico)
+        // Guardar sesión 
         public void GuardarSesion(string nombreUsuario, DateTime horaInicio, DateTime horaFin, TimeSpan tiempoTotal)
         {
             try
@@ -261,6 +263,7 @@ namespace pryBergagna_IEFI
             }       
         }
 
+        // Método para registrar una nueva tarea
         public void AgregarTarea(clsTarea tarea)
         {
             try
@@ -293,6 +296,8 @@ namespace pryBergagna_IEFI
                 MessageBox.Show("Error al guardar la tarea: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Método para listar todas las tareas
         public void ListarTareas(DataGridView grilla)
         {
             try
@@ -315,6 +320,8 @@ namespace pryBergagna_IEFI
                 MessageBox.Show("Error al listar tareas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Método para buscar tareas por fecha
         public void BuscarTareasPorFecha(DataGridView grilla, DateTime fecha)
         {
             try

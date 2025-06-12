@@ -14,7 +14,7 @@ namespace pryBergagna_IEFI
     public partial class frmRegistro : Form
     {
 
-        //Conexion
+        // Conexion
         clsConexionBD conexion = new clsConexionBD();
 
         public frmRegistro()
@@ -23,6 +23,7 @@ namespace pryBergagna_IEFI
         }
         private void frmRegistro_Load(object sender, EventArgs e)
         {
+            // Carga valores en los ComboBox
             cmbTarea.Items.AddRange(new string[] { "Auditoría", "Consultas", "Inspección", "Reclamos", "Visita" });
             cmbLugar.Items.AddRange(new string[] { "Empresa", "Servicio", "Oficina" });
 

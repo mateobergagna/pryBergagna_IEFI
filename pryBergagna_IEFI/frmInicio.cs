@@ -12,6 +12,7 @@ namespace pryBergagna_IEFI
 {
     public partial class frmInicio : Form
     {
+        // VARIABLES
         private clsUsuario usuarioLogueado;
         private DateTime horaInicio;
         private int tiempoActual = 0;
@@ -41,7 +42,7 @@ namespace pryBergagna_IEFI
         
         private void frmInicio_Load(object sender, EventArgs e)
         {
-            horaInicioSesion = DateTime.Now;
+            horaInicioSesion = DateTime.Now; // Guarda la hora exacta en que se abrió el formulario
 
             // RESTRICCIÓN DE ACCESO SEGÚN ROL
             if (usuarioLogueado.RolId == 2)

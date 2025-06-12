@@ -16,7 +16,7 @@ namespace pryBergagna_IEFI
 
         clsConexionBD conexion = new clsConexionBD();
 
-        //Variable guarda ID
+        // Variable guarda ID
         private int IdSeleccionado = 0;
 
         public frmUsuarios()
@@ -140,6 +140,7 @@ namespace pryBergagna_IEFI
         }
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
+            // Habilita los botones solo si hay selección
             if (dgvUsuarios.SelectedRows.Count > 0)
             {
                 btnModificar.Enabled = true;

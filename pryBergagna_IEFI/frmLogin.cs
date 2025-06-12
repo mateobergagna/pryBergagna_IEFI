@@ -13,10 +13,10 @@ namespace pryBergagna_IEFI
     public partial class frmLogin : Form
     {
 
-        //Conexion
+        // Conexion
         clsConexionBD conexion = new clsConexionBD();
 
-        //Variable intentos
+        // Variable intentos
         int intentos = 3;
         private bool mostrarContraseña = false;
 

@@ -23,9 +23,10 @@ namespace pryBergagna_IEFI
 
         private void frmAuditoria_Load(object sender, EventArgs e)
         {
-            CargarAuditoria();
+            CargarAuditoria(); // Carga todos los registros de la auditoría
         }
 
+        // Método que carga todas las sesiones
         private void CargarAuditoria()
         {
             clsConexionBD conexion = new clsConexionBD();
@@ -42,6 +43,7 @@ namespace pryBergagna_IEFI
                     INNER JOIN Usuarios U ON S.IdUsuario = U.Id
                     INNER JOIN Roles R ON U.RolId = R.Id";
 
+                    // Adaptador que ejecuta la consulta y llena una tabla en memoria
                     SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conn);
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
@@ -73,6 +75,7 @@ namespace pryBergagna_IEFI
                 {
                     conn.Open();
 
+                    // Se obtiene la fecha seleccionada del DateTimePicker
                     DateTime fechaSeleccionada = dtpFecha.Value.Date;
                     string consulta = @"
                 SELECT U.Nombre AS Usuario, R.Nombre AS Rol, 
