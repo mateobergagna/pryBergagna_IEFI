@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuarios));
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.mrcUsuarios = new System.Windows.Forms.GroupBox();
@@ -303,9 +304,10 @@
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.mrcUsuarios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmUsuarios";
+            this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.frmUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.mrcUsuarios.ResumeLayout(false);

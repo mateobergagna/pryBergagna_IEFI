@@ -48,8 +48,10 @@ namespace pryBergagna_IEFI
             if (usuarioLogueado.RolId == 2)
             {
                 // Oculta menú Administración para usuarios comunes
-                mnuUsuarios.Visible = false;
-                mnuAuditoria.Visible = false;
+                mnuAdmin.Visible = false;
+                //Cambio corrección
+                //mnuUsuarios.Visible = false;
+                //mnuAuditoria.Visible = false;
 
                 // Se puede deshabilitar en lugar de ocultarlos:
                 // mnuUsuarios.Enabled = false;

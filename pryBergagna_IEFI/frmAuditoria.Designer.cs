@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAuditoria));
             this.dgvAuditoria = new System.Windows.Forms.DataGridView();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.dgvAuditoria);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAuditoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Auditoria";

@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistro));
             this.mrcRegistro = new System.Windows.Forms.GroupBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtComentarios = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,8 +50,6 @@
             this.lblTarea = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.dgvTareas = new System.Windows.Forms.DataGridView();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.mrcRegistro.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,6 +77,36 @@
             this.mrcRegistro.TabIndex = 2;
             this.mrcRegistro.TabStop = false;
             this.mrcRegistro.Text = "Nueva Registro";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnAgregar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.agregar_tarea2;
+            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAgregar.FlatAppearance.BorderSize = 0;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.Location = new System.Drawing.Point(487, 244);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(94, 84);
+            this.btnAgregar.TabIndex = 26;
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnCancelar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.actualizar__1_;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(606, 244);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(94, 84);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // groupBox2
             // 
@@ -262,36 +293,6 @@
             this.dgvTareas.Size = new System.Drawing.Size(750, 208);
             this.dgvTareas.TabIndex = 3;
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnAgregar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.agregar_tarea2;
-            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(487, 244);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(94, 84);
-            this.btnAgregar.TabIndex = 26;
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnCancelar.BackgroundImage = global::pryBergagna_IEFI.Properties.Resources.actualizar__1_;
-            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(606, 244);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(94, 84);
-            this.btnCancelar.TabIndex = 7;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // frmRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -300,6 +301,7 @@
             this.ClientSize = new System.Drawing.Size(771, 596);
             this.Controls.Add(this.dgvTareas);
             this.Controls.Add(this.mrcRegistro);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Tarea";

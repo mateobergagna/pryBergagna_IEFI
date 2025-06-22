@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTareas));
             this.dgvTareas = new System.Windows.Forms.DataGridView();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -88,9 +89,10 @@
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.dgvTareas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTareas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmTareas";
+            this.Text = "Tareas";
             this.Load += new System.EventHandler(this.frmTareas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).EndInit();
             this.ResumeLayout(false);

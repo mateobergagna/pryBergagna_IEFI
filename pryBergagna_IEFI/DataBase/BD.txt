@@ -1,0 +1,41 @@
+SELECT TOP (1000) [Id]
+      ,[Nombre]
+  FROM [GestionUsuarios].[dbo].[Roles]
+
+
+
+SELECT TOP (1000) [Id]
+      ,[IdUsuario]
+      ,[FechaInicio]
+      ,[HoraInicio]
+      ,[HoraFin]
+      ,[TotalHoras]
+  FROM [GestionUsuarios].[dbo].[Sesiones]
+
+
+
+
+SELECT TOP (1000) [Id]
+      ,[Fecha]
+      ,[Tarea]
+      ,[Lugar]
+      ,[Comentarios]
+      ,[Uniforme]
+      ,[LicenciaEstudio]
+      ,[LicenciaVacacion]
+      ,[ReclamoSalario]
+      ,[ReclamoRecibo]
+  FROM [GestionUsuarios].[dbo].[Tareas]
+
+
+
+
+
+SELECT TOP (1000) [Id]
+      ,[Nombre]
+      ,[Contraseña]
+      ,[RolId]
+      ,[DNI]
+      ,[Gmail]
+      ,[Telefono]
+  FROM [GestionUsuarios].[dbo].[Usuarios]
